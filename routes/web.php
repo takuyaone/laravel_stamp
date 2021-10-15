@@ -17,10 +17,14 @@ use App\Http\Controllers\StampController;
 // Route::get('/', function () {
 //     return view('auth.login');
 // });
-
-Route::get('/', [StampController::class, 'index'])
-    ->middleware('auth:users')
-    ->name('index');
+Route::middleware('auth:users')->group(function () {
+    Route::get('/', [StampController::class, 'index'])->name('index');
+    Route::post('/start-work', [StampController::class, 'startWork'])->name('start-work');
+    Route::post('/end-work', [StampController::class, 'endWork'])->name('end-work');
+    Route::post('/break-start', [StampController::class, 'breakStart'])->name('break-start');
+    Route::post('/break-end', [StampController::class, 'breakEnd'])->name('break-end');
+    Route::get('/show', [StampController::class, 'showTable'])->name('show');
+});
 
 
 Route::get('/dashboard', function () {

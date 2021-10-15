@@ -17,10 +17,10 @@ class CreateStampsTable extends Migration
             $table->id();
             $table->foreignId('user_id');
             $table->date('date');
-            $table->time('start_work',6);
-            $table->time('end_work', 6);
-            $table->time('break_start', 6);
-            $table->time('break_end', 6);
+            $table->dateTime('start_work');
+            $table->dateTime('end_work')->nullable();
+            $table->dateTime('break_start')->nullable();
+            $table->dateTime('break_end')->nullable();
             $table->timestamps();
         });
     }

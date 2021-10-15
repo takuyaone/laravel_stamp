@@ -18,9 +18,15 @@ class Stamp extends Model
         'break_end',
     ];
 
-    public function User()
+    public function user()
     {
         return $this->belongsTo(User::class);
     }
+
+    public function getDate()
+    {
+        return $this->date;
+    }
+
 
 }
