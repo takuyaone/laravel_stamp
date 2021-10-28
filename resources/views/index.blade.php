@@ -4,9 +4,9 @@
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 {{Auth::user()->name}}さんお疲れ様です。
             </h2>
-            <div>
-                <p>現在の日時</p>
-                <div>{{$nowTime}}</div>
+            <div class="text-xl">
+                <p>本日の日付</p>
+                <div>{{date('Y-m-d')}}</div>
             </div>
         </div>
     </x-slot>
@@ -35,7 +35,7 @@
                                     </form>
                                 </div>
                                 <div class="p-4 sm:w-1/4 w-1/2">
-                                    <form method="post" action="{{route('break-start')}}">
+                                    <form method="post" action="{{route('rest-start')}}">
                                         @csrf
                                         @method('post')
                                         <button class="flex mx-auto w-40 h-40 object-cover rounded-full text-white bg-blue-500 border-0 py-16 px-12 focus:outline-none hover:bg-blue-600 rounded">休憩開始</button>
@@ -43,7 +43,7 @@
                                     </form>
                                 </div>
                                 <div class="p-4 sm:w-1/4 w-1/2">
-                                    <form method="post" action="{{route('break-end')}}">
+                                    <form method="post" action="{{route('rest-end')}}">
                                         @csrf
                                         @method('post')
                                         <button class="flex mx-auto w-40 h-40 object-cover rounded-full text-white bg-blue-500 border-0 py-16 px-12 focus:outline-none hover:bg-blue-600 rounded">休憩終了</button>

@@ -11,11 +11,11 @@ class Stamp extends Model
 
     protected $fillable = [
         'user_id',
-        'date',
         'start_work',
         'end_work',
-        'break_start',
-        'break_end',
+        'total_work',
+        'total_rest',
+        'stamp_date'
     ];
 
     public function user()
@@ -23,9 +23,9 @@ class Stamp extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function getDate()
+    public function rests()
     {
-        return $this->date;
+        return $this->hasMany(Rest::class);
     }
 
 
