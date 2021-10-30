@@ -1,0 +1,1 @@
+                                    <td class="px-4 py-3">{{gmdate("H:i:s",(strtotime($date.$rest->rest_end)-strtotime($date.$rest->rest_start)))}}</td>

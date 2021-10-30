@@ -44,17 +44,17 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    @foreach($users as $user)
-                                    <td class="px-4 py-3">{{$user->name}}</td>
-                                    <td class="px-4 py-3">{{$user->start_work}}</td>
-                                    <td class="px-4 py-3">{{$user->end_work}}</td>
-                                    <td class="px-4 py-3">{{$user->total_rest}}</td>
-                                    <td class="px-4 py-3">{{$user->total_work}}</td>
+                                    @foreach($stamps as $stamp)
+                                    <td class="px-4 py-3">{{$stamp->name}}</td>
+                                    <td class="px-4 py-3">{{$stamp->start_work}}</td>
+                                    <td class="px-4 py-3">{{$stamp->end_work}}</td>
+                                    <td class="px-4 py-3">{{$stamp->total_rest}}</td>
+                                    <td class="px-4 py-3">{{gmdate("H:i:s",(strtotime($date.$stamp->end_work)-strtotime($date.$stamp->start_work)))}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$users->links()}}
+                        {{$stamps->links()}}
                     </div>
                 </div>
             </section>
