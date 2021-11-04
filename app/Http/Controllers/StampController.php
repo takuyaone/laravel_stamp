@@ -62,6 +62,7 @@ class StampController extends Controller
 
     public function endWork()
     {
+
         $user = Auth::user();
         $timestamp = Stamp::where('user_id', $user->id)->latest()->first();
         if (!$timestamp) {
@@ -75,15 +76,15 @@ class StampController extends Controller
                     $timestamp->update([
                         'end_work' => Carbon::now()
                     ]);
-                    $startWork=new Carbon($timestamp->start_work);
-                    $endWork=new Carbon($timestamp->end_work);
-                    $workTime=$startWork->diffInSeconds($endWork);
-                    $workTimeGet=gmdate("H:i:s",$workTime);
-                    $totalRest = Rest::where('stamp_id', $timestamp->id)->sum('rest_time');
-                    $timestamp->update([
-                        'total_work' => $workTimeGet,
-                        'total_rest' => $totalRest
-                    ]);
+                    // $startWork=new Carbon($timestamp->start_work);
+                    // $endWork=new Carbon($timestamp->end_work);
+                    // $workTime=$startWork->diffInSeconds($endWork);
+                    // $workTimeGet=gmdate("H:i:s",$workTime);
+                    // $totalRest = Rest::where('stamp_id', $timestamp->id)->sum('rest_time');
+                    // $timestamp->update([
+                    //     'total_work' => $workTimeGet,
+                    //     'total_rest' => $totalRest
+                    // ]);
                     return redirect()->back()->with(['message' => '退勤打刻が完了しました。お疲れ様でした。', 'status' => 'info']);
                 }
                 $today = new Carbon();

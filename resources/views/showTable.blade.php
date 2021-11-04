@@ -43,12 +43,17 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                @foreach($stamps as $stamp)
                                 <tr>
-                                    @foreach($stamps as $stamp)
+                                    {{-- {{dd($stamps)}} --}}
                                     <td class="px-4 py-3">{{$stamp->name}}</td>
                                     <td class="px-4 py-3">{{$stamp->start_work}}</td>
                                     <td class="px-4 py-3">{{$stamp->end_work}}</td>
-                                    <td class="px-4 py-3">{{$stamp->total_rest}}</td>
+                                    @if (!empty($stamp->stamp_id))
+                                    <td class="px-4 py-3">{{gmdate("H:i:s",($stamp->sum_rest_time))}}</td>
+                                    @else
+                                    <td class="px-4 py-3">休憩なし</td>
+                                    @endif
                                     <td class="px-4 py-3">{{gmdate("H:i:s",(strtotime($date.$stamp->end_work)-strtotime($date.$stamp->start_work)))}}</td>
                                 </tr>
                                 @endforeach
