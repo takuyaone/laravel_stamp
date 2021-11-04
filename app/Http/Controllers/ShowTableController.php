@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Stamp;
 use App\Models\Rest;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -43,13 +42,12 @@ class ShowTableController extends Controller
         //サブクエリ stamp_idごとの合計休憩時間を取得するサブクエリ
         $rests = Rest::select('stamp_id', DB::raw('SUM(rest_time) as sum_rest_time'))->groupBy('stamp_id');
 
-
         $stamps = Stamp::join('users', 'users.id', 'user_id')
         //クエリに対してleftJoinSubでサブクエリをjoin
         //必ずしも休憩時間があるわけではないないのでleftJoinSubを採用
-        ->leftJoinSub($rests, 'rests', function ($join) {
-            $join->on('stamps.id', '=', 'rests.stamp_id');
-        })
+            ->leftJoinSub($rests, 'rests', function ($join) {
+                $join->on('stamps.id', '=', 'rests.stamp_id');
+            })
             ->where('stamp_date', $date)
             ->orderBy('stamps.updated_at', 'asc')
             ->paginate(5);

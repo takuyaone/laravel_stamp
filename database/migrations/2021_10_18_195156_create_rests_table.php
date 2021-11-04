@@ -14,15 +14,15 @@ class CreateRestsTable extends Migration
     public function up()
     {
         Schema::create('rests', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('stamp_id')
+            $table->unsignedBigInteger('id',true);
+            $table->unsignedBigInteger('stamp_id')
             ->references('id')
             ->on('stamps')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->time('rest_start')->nullable();
             $table->time('rest_end')->nullable();
-            $table->time('rest_time')->nullable();
+            $table->integer('rest_time')->nullable();
             $table->timestamps();
         });
     }

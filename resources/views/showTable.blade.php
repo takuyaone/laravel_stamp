@@ -50,7 +50,9 @@
                                     <td class="px-4 py-3">{{$stamp->start_work}}</td>
                                     <td class="px-4 py-3">{{$stamp->end_work}}</td>
                                     @if (!empty($stamp->stamp_id))
-                                    <td class="px-4 py-3">{{gmdate("H:i:s",($stamp->sum_rest_time))}}</td>
+                                    {{-- {{var_dump(intval($stamp->sum_rest_time))}}
+                                    {{var_dump((strtotime($date.$stamp->end_work)-strtotime($date.$stamp->start_work)))}} --}}
+                                    <td class="px-4 py-3">{{gmdate("H:i:s",$stamp->sum_rest_time)}}</td>
                                     @else
                                     <td class="px-4 py-3">休憩なし</td>
                                     @endif
@@ -59,7 +61,7 @@
                                 @endforeach
                             </tbody>
                         </table>
-                        {{$stamps->links()}}
+                        {{$stamps->appends(Request::only('date'))->links()}}
                     </div>
                 </div>
             </section>

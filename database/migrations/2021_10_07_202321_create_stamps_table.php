@@ -14,16 +14,14 @@ class CreateStampsTable extends Migration
     public function up()
     {
         Schema::create('stamps', function (Blueprint $table) {
-            $table->id();
-            $table->foreignId('user_id')
+            $table->unsignedBigInteger('id', true);
+            $table->unsignedBigInteger('user_id')
             ->references('id')
             ->on('users')
             ->onUpdate('cascade')
             ->onDelete('cascade');
             $table->time('start_work');
             $table->time('end_work')->nullable();
-            $table->time('total_rest')->nullable();
-            $table->time('total_work')->nullable();
             $table->date('stamp_date');
             $table->timestamps();
         });

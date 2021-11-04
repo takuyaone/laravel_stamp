@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use App\Models\Stamp;
 use App\Models\Rest;
 use Carbon\Carbon;
@@ -71,20 +70,11 @@ class StampController extends Controller
         if (!$timestamp->end_work) {
             $restStamp = Rest::where('stamp_id', $timestamp->id)->latest()->first();
                 if (!empty($restStamp->rest_start) && empty($restStamp->rest_end)) {
-                    return redirect()->back()->with(['message' => '休憩終了が打刻されていません。', 'status' => 'alert']);
+                    return redirect()->back()->with(['message' => '休憩終了が押されていません。', 'status' => 'alert']);
                     }
                     $timestamp->update([
                         'end_work' => Carbon::now()
                     ]);
-                    // $startWork=new Carbon($timestamp->start_work);
-                    // $endWork=new Carbon($timestamp->end_work);
-                    // $workTime=$startWork->diffInSeconds($endWork);
-                    // $workTimeGet=gmdate("H:i:s",$workTime);
-                    // $totalRest = Rest::where('stamp_id', $timestamp->id)->sum('rest_time');
-                    // $timestamp->update([
-                    //     'total_work' => $workTimeGet,
-                    //     'total_rest' => $totalRest
-                    // ]);
                     return redirect()->back()->with(['message' => '退勤打刻が完了しました。お疲れ様でした。', 'status' => 'info']);
                 }
                 $today = new Carbon();
@@ -164,9 +154,10 @@ class StampController extends Controller
             $restStart = new Carbon($restStamp->rest_start);
             $restEnd = new Carbon($restStamp->rest_end);
             $restTime = $restStart->diffInSeconds($restEnd);
-            $restTimeGet = gmdate("H:i:s", $restTime);
+            // dd($restTime);
+            // $restTimeGet = gmdate("H:i:s", $restTime);
             $restStamp->update([
-                'rest_time'=>$restTimeGet
+                'rest_time'=>$restTime
             ]);
 
             return redirect()->back()->with(['message' => '休憩終了しました。', 'status' => 'info']);

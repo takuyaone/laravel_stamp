@@ -26,7 +26,9 @@ Route::middleware('auth:users')->group(function () {
     Route::post('/rest-start', [StampController::class, 'restStart'])->name('rest-start');
     Route::post('/rest-end', [StampController::class, 'restEnd'])->name('rest-end');
     Route::get('/show', [ShowTableController::class, 'showTable'])->name('show');
+    Route::get('/search', [ShowTableController::class, 'search']);
     Route::post('/search', [ShowTableController::class, 'search'])->name('search');
+
 });
 
 
