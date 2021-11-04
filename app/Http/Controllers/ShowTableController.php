@@ -55,4 +55,45 @@ class ShowTableController extends Controller
 
         return view('showTable', compact('stamps', 'date'));
     }
+
+    public function myShowTable()
+    {
+        $user = Auth::user();
+        $date = date("Y-m-d");
+        $stampDate = Stamp::select('stamp_date')->get();
+        if (!$stampDate) {
+            return redirect()->back()->with(['message' => '勤務履歴がありません', 'status' => 'alert']);
+        }
+
+        $rests = Rest::select('stamp_id', DB::raw('SUM(rest_time) as sum_rest_time'))->groupBy('stamp_id');
+
+        $myStamps = Stamp::join('users', 'users.id', 'user_id')
+            ->leftJoinSub($rests, 'rests', function ($join) {
+                $join->on('stamps.id', '=', 'rests.stamp_id');
+            })
+            ->where('user_id', $user->id)
+            ->orderBy('stamps.updated_at', 'asc')
+            ->paginate(5);
+
+        return view('myShowTable', compact('myStamps', 'date'));
+    }
+
+    public function mySearch(Request $request)
+    {
+        $user = Auth::user();
+        $date = $request->date;
+        $rests = Rest::select('stamp_id', DB::raw('SUM(rest_time) as sum_rest_time'))->groupBy('stamp_id');
+
+        $myStamps = Stamp::leftJoinSub($rests, 'rests', function ($join) {
+                $join->on('stamps.id', '=', 'rests.stamp_id');
+            })
+            ->where('user_id', '=', $user->id)
+            ->where('stamp_date', $date)
+            ->orderBy('stamps.updated_at', 'asc')
+            ->paginate(5);
+
+        return view('myShowTable', compact('myStamps', 'date'));
+    }
+
+
 }

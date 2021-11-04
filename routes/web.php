@@ -28,6 +28,9 @@ Route::middleware('auth:users')->group(function () {
     Route::get('/show', [ShowTableController::class, 'showTable'])->name('show');
     Route::get('/search', [ShowTableController::class, 'search']);
     Route::post('/search', [ShowTableController::class, 'search'])->name('search');
+    Route::get('/my-show', [ShowTableController::class, 'myShowTable'])->name('my-show');
+    Route::get('/my-search', [ShowTableController::class, 'mySearch']);
+    Route::post('/my-search', [ShowTableController::class, 'mySearch'])->name('my-search');
 
 });
 

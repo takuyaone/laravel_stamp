@@ -18,6 +18,10 @@
                     <x-nav-link :href="route('show')" :active="request()->routeIs('show')">
                         勤務一覧
                     </x-nav-link>
+                    <x-nav-link :href="route('my-show')" :active="request()->routeIs('my-show')">
+                        個人勤務一覧
+                    </x-nav-link>
+
 
                 </div>
             </div>
@@ -71,6 +75,10 @@
             <x-responsive-nav-link :href="route('show')" :active="request()->routeIs('show')">
                 勤務一覧
             </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('my-show')" :active="request()->routeIs('my-show')">
+                個人勤務一覧
+            </x-responsive-nav-link>
+
         </div>
 
         <!-- Responsive Settings Options -->
