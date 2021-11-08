@@ -29,11 +29,6 @@
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('register') }}">
                     アカウントをお持ちでない方
                 </a>
-                @if (Route::has('password.request'))
-                <a class="underline text-sm text-gray-600 hover:text-gray-900 ml-4" href="{{ route('password.request') }}">
-                    パスワードをお忘れの方
-                </a>
-                @endif
 
                 <x-button class="ml-4">
                     ログイン
