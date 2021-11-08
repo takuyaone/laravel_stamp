@@ -33,31 +33,25 @@
                         <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                                 <tr>
-                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100 rounded-tl rounded-bl">名前</th>
+                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務日</th>
                                     <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務開始</th>
                                     <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務終了</th>
                                     <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">休憩時間</th>
                                     <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務時間</th>
-                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務日</th>
-
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($myStamps as $stamp)
                                 <tr>
-                                    {{-- {{dd($stamps)}} --}}
-                                    <td class="px-4 py-3 text-center">{{Auth::user()->name}}</td>
+                                    <td class="px-4 py-3 text-center">{{$stamp->stamp_date}}</td>
                                     <td class="px-4 py-3 text-center">{{$stamp->start_work}}</td>
                                     <td class="px-4 py-3 text-center">{{$stamp->end_work}}</td>
                                     @if (!empty($stamp->stamp_id))
-                                    {{-- {{var_dump(intval($stamp->sum_rest_time))}}
-                                    {{var_dump((strtotime($date.$stamp->end_work)-strtotime($date.$stamp->start_work)))}} --}}
                                     <td class="px-4 py-3 text-center">{{gmdate("H:i:s",$stamp->sum_rest_time)}}</td>
                                     @else
                                     <td class="px-4 py-3 text-center">休憩なし</td>
                                     @endif
                                     <td class="px-4 py-3 text-center">{{gmdate("H:i:s",(strtotime($date.$stamp->end_work)-strtotime($date.$stamp->start_work)))}}</td>
-                                    <td class="px-4 py-3 text-center">{{$stamp->stamp_date}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
