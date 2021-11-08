@@ -23,9 +23,9 @@
                             @csrf
                             @method('post')
                             <div>
-                                <label for="date" class="mr-2">日付を選択して下さい</label>
+                                <label for="date" class="mr-2 b-block">日付を選択して下さい</label>
                                 <input type="date" name="date" value="date" id="date" class="mr-2">
-                                <button class="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">検索</button>
+                                <button class="text-white bg-blue-500 border-0 mt-2 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">検索</button>
                             </div>
                         </form>
                     </div>
@@ -33,25 +33,25 @@
                         <table class="table-auto w-full text-left whitespace-no-wrap">
                             <thead>
                                 <tr>
-                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務日</th>
-                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務開始</th>
-                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務終了</th>
-                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">休憩時間</th>
-                                    <th class="px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務時間</th>
+                                    <th class="md:px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務日</th>
+                                    <th class="md:px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務開始</th>
+                                    <th class="md:px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務終了</th>
+                                    <th class="md:px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">休憩時間</th>
+                                    <th class="md:px-4 py-3 text-center title-font tracking-wider font-medium text-gray-900 text-sm bg-gray-100">勤務時間</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach($myStamps as $stamp)
                                 <tr>
-                                    <td class="px-4 py-3 text-center">{{$stamp->stamp_date}}</td>
-                                    <td class="px-4 py-3 text-center">{{$stamp->start_work}}</td>
-                                    <td class="px-4 py-3 text-center">{{$stamp->end_work}}</td>
+                                    <td class="md:px-4 py-3 text-center">{{$stamp->stamp_date}}</td>
+                                    <td class="md:px-4 py-3 text-center">{{$stamp->start_work}}</td>
+                                    <td class="md:px-4 py-3 text-center">{{$stamp->end_work}}</td>
                                     @if (!empty($stamp->stamp_id))
-                                    <td class="px-4 py-3 text-center">{{gmdate("H:i:s",$stamp->sum_rest_time)}}</td>
+                                    <td class="md:px-4 py-3 text-center">{{gmdate("H:i:s",$stamp->sum_rest_time)}}</td>
                                     @else
-                                    <td class="px-4 py-3 text-center">休憩なし</td>
+                                    <td class="md:px-4 py-3 text-center">休憩なし</td>
                                     @endif
-                                    <td class="px-4 py-3 text-center">{{gmdate("H:i:s",(strtotime($date.$stamp->end_work)-strtotime($date.$stamp->start_work)))}}</td>
+                                    <td class="md:px-4 py-3 text-center">{{gmdate("H:i:s",(strtotime($date.$stamp->end_work)-strtotime($date.$stamp->start_work)))}}</td>
                                 </tr>
                                 @endforeach
                             </tbody>
