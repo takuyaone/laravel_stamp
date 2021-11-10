@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\RestStampController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\StampController;
 use App\Http\Controllers\ShowTableController;
@@ -23,8 +24,8 @@ Route::middleware('auth:users')->group(function () {
     Route::get('/', [StampController::class, 'index'])->name('index');
     Route::post('/start-work', [StampController::class, 'startWork'])->name('start-work');
     Route::post('/end-work', [StampController::class, 'endWork'])->name('end-work');
-    Route::post('/rest-start', [StampController::class, 'restStart'])->name('rest-start');
-    Route::post('/rest-end', [StampController::class, 'restEnd'])->name('rest-end');
+    Route::post('/rest-start', [RestStampController::class, 'restStart'])->name('rest-start');
+    Route::post('/rest-end', [RestStampController::class, 'restEnd'])->name('rest-end');
     Route::get('/show', [ShowTableController::class, 'showTable'])->name('show');
     Route::get('/search', [ShowTableController::class, 'search']);
     Route::post('/search', [ShowTableController::class, 'search'])->name('search');

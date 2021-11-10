@@ -18,6 +18,10 @@ class Stamp extends Model
         'stamp_date'
     ];
 
+    protected $dates = [
+        'stamp_date'
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class);

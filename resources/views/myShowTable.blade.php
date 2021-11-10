@@ -43,7 +43,7 @@
                             <tbody>
                                 @foreach($myStamps as $stamp)
                                 <tr>
-                                    <td class="md:px-4 py-3 text-center">{{$stamp->created_at->format('Y/m/d')}}</td>
+                                    <td class="md:px-4 py-3 text-center">{{$stamp->stamp_date->format('Y/m/d')}}</td>
                                     <td class="md:px-4 py-3 text-center">{{$stamp->start_work}}</td>
                                     <td class="md:px-4 py-3 text-center">{{$stamp->end_work}}</td>
                                     @if (!empty($stamp->stamp_id))
