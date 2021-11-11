@@ -22,5 +22,6 @@ php artisan breeze:install
 npm install
 npm run dev
 
-##
+## 作成アプリURL
+http://atte99.herokuapp.com/
 
